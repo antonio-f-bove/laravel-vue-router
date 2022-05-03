@@ -25,9 +25,8 @@ class StoreUpdatePost extends FormRequest
     public function rules()
     {
         $rules = [
-            'title' => 'string',
-            'content' => 'string',
-            'published_at' => 'nullable|date'
+            'title' => 'required|string|max:150',
+            'content' => 'required|string',
         ];
 
         return $rules;

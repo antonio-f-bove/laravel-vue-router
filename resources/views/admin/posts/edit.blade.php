@@ -28,6 +28,7 @@
         <small class="invalid-feedback">{{ $message }}</small>    
       @enderror
     </div>
+
     <div class="form-group">
       <label for="content">Content</label>
       <textarea id="content" 
@@ -40,21 +41,11 @@
         <small class="invalid-feedback">{{ $message }}</small>    
       @enderror
     </div>
-    <div class="form-group">
-      <label for="published_at">Published at</label>
-      <input type="datetime-local" id="published_at"
-      value="{{ old('published_at') ?: date('c', strtotime($post->published_at)) }}" 
-      placeholder="publication date"
-      class="form-control @error('published_at') is-invalid @enderror"
-      >
-      @error('published_at')
-        <small class="invalid-feedback">{{ $message }}</small>    
-      @enderror
-    </div>
-
+    
     <button class="btn btn-primary" type="submit">
       Update Post
     </button>
+  </form>
 </div>
 
 @endsection

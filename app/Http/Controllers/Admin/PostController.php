@@ -86,6 +86,8 @@ class PostController extends Controller
      */
     public function update(StoreUpdatePost $request, Post $post)
     {
+        // TODO la request sembra non arrivare al controller
+        dd($request);
         $validated = $request->validated();
         $post->update($validated);
 
