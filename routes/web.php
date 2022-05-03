@@ -19,12 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::prefix('admin')
     ->name('admin.')
     ->namespace('Admin')
     ->middleware('auth')
     ->group(function() {
         Route::get('/home', 'HomeController')->name('home');
+        Route::post('posts/{post}', 'PostController@publish')->name('posts.publish');
         Route::resource('/posts', 'PostController')->except('show');
     });

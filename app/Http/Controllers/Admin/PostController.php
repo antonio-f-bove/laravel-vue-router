@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdatePost;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -33,12 +34,25 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  {custom request}  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdatePost $request)
     {
-        //
+        // $validated = $request->validate([
+        //     'title' => 'required|max:150',
+        //     'content' => 'required',
+        //     'published_at' => 'date'
+        // ]);
+
+        $validated = $request->validated();
+
+        $post = new Post();
+        $post->fill($validated);
+        $post->slug = Post::getUniqueSlug($post->title);
+        $post->save();
+        
+        return redirect()->route('admin.posts.index');
     }
 
     // /**
@@ -55,7 +69,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -70,19 +84,35 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdatePost $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+        $post->update($validated);
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('admin.posts.index');
     }
+
+    public function publish(Post $post)
+    {
+        $post->published_at = date('Y-m-d');
+
+        // dd($post);
+        $post->update();
+
+        return redirect()->route('admin.posts.index');
+    }
+
 }

@@ -8,6 +8,7 @@
       <tr>
         <th scope="col">id</th>
         <th scope="col">Title</th>
+        <th scope="col">Slug</th>
         <th scope="col">Published</th>
         <th scope="col">Actions</th>
       </tr>
@@ -17,12 +18,29 @@
         <tr>
           <th scope="row">{{ $post->id }}</th>
           <td>{{ $post->title }}</td>
-          <td>{{ $post->published_at ?: 'unpublished' }}</td>
+          <td>{{ $post->slug }}</td>
           <td>
-            <form action="{{ route('admin.posts.edit', $post) }}" method="GET">
-              @csrf
-              <button type="submit" class="btn btn-info">Edit</button>
-            </form>
+            @if ($post->published_at)
+              {{ $post->published_at }}               
+            @else
+              <form action="{{ route('admin.posts.publish', $post) }}" method="POST">
+                @csrf
+                <button class="btn btn-warning">Publish</button>
+              </form>
+            @endif
+          </td>
+          <td>
+            <div class="d-flex">
+              <form action="{{ route('admin.posts.edit', $post) }}" method="GET">
+                @csrf
+                <button type="submit" class="btn btn-info mr-1">Edit</button>
+              </form>
+              <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
           </td>
         </tr>
       @endforeach

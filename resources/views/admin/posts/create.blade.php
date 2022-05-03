@@ -3,6 +3,15 @@
 @section('content')
 
 <div class="container">
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
   <form action="{{ route('admin.posts.store') }}" method="POST">
     @csrf
   
@@ -13,19 +22,36 @@
       placeholder="input title"
       value="{{ old('title') }}"
       >
+      @error('title')
+        <small class="invalid-feedback">{{ $message }}</small>    
+      @enderror
     </div>
     <div class="form-group">
       <label for="content">Content</label>
       <textarea id="content" 
-      class="form-control @error('title') is-invalid @enderror"
+      class="form-control @error('content') is-invalid @enderror"
       placeholder="input content" rows="20"
       >
-      {{ old('title') }}
+        {{ old('content') }}
       </textarea>
+      @error('content')
+        <small class="invalid-feedback">{{ $message }}</small>    
+      @enderror
+    </div>
+    <div class="form-group">
+      <label for="published_at">Published at</label>
+      <input type="date" id="published_at"
+      value="{{ old('published_at') }}" 
+      placeholder="publication date"
+      class="form-control @error('published_at') is-invalid @enderror"
+      >
+      @error('published_at')
+        <small class="invalid-feedback">{{ $message }}</small>    
+      @enderror
     </div>
 
     <button class="btn btn-primary" type="submit">
-      Create post
+      Create Post
     </button>
   </form>
 </div>
