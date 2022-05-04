@@ -29,23 +29,32 @@
       @enderror
     </div>
 
-    {{-- <div class="form-group">
-      <label for="category_id" class="mr-3">Category</label>
+    <div class="form-group">
+      <label for="category_id">Category</label>
       <select name="category_id" id="category_id"
       class="form-control @error('category_id') is-invalid @enderror"
       >
-        <option value="">-- None --</option>
+        <option value=""
+        {{ old('category_id') == null ? 'selected' : '' }}
+        {{-- <!-- TODO non mantiene questa option quando old==null --> --}}
+        >
+          -- None --
+        </option>
         @foreach ($categories as $category)
           <option value="{{ $category->id }}"
-          {{ old($post->category_id) == $category->id ? 'selected' : '' }}
-            >{{ $category->name }}
+          {{ (optional($post->category)->id == $category->id 
+                && old('category_id') == null) 
+              || (old('category_id') == $category->id)
+              ? 'selected' : '' }}
+          >
+            {{ $category->name }}
           </option>
         @endforeach
       </select>
       @error('category_id')
         <small class="invalid-feedback">{{ $message }}</small>
       @enderror
-    </div> --}}
+    </div>
 
     <div class="form-group">
       <label for="content">Content</label>
