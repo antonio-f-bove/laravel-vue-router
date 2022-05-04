@@ -86,9 +86,9 @@ class PostController extends Controller
     public function update(StoreUpdatePost $request, Post $post)
     {
         $validated = $request->validated();
+        $post->slug = Post::getUniqueSlug($request->title);
         $post->update($validated);
-        $post->slug = Post::getUniqueSlug($post->title);
-        // TODO slug doesn't update
+ 
         return redirect()->route('admin.posts.index');
     }
 
