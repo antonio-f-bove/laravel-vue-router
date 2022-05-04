@@ -3,6 +3,13 @@
 @section('content')
 
 <div class="container">
+  <div class="d-flex mb-3">
+    <a href="{{ route('admin.posts.create') }}"
+    class="ml-auto mr-3"
+    >
+      <button class="btn btn-info">Add Post</button>
+    </a>
+  </div>
   <table class="table">
     <thead>
       <tr>

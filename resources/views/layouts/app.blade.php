@@ -36,12 +36,7 @@
                         @if (Auth::check())
                             <li class="nav-item">
                                 <a href="{{ route('admin.posts.index') }}">
-                                    Show Posts
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.posts.create') }}">
-                                    Add new Post
+                                    Posts
                                 </a>
                             </li>
                         @endif
