@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::limit(20)->get();
+        $posts = Post::all();
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -39,11 +39,10 @@ class PostController extends Controller
      */
     public function store(StoreUpdatePost $request)
     {
-        // $validated = $request->validate([
-        //     'title' => 'required|max:150',
-        //     'content' => 'required',
-        //     'published_at' => 'date'
-        // ]);
+    //     $validated = $request->validate([
+    //         'title' => 'required|max:150',
+    //         'content' => 'required',
+    //     ]);
 
         $validated = $request->validated();
 
@@ -86,11 +85,10 @@ class PostController extends Controller
      */
     public function update(StoreUpdatePost $request, Post $post)
     {
-        // TODO la request sembra non arrivare al controller
-        dd($request);
         $validated = $request->validated();
         $post->update($validated);
-
+        $post->slug = Post::getUniqueSlug($post->title);
+        // TODO slug doesn't update
         return redirect()->route('admin.posts.index');
     }
 

@@ -7,9 +7,9 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    protected $fillable = [
-        'title',
-        'content',
+    protected $guarded = [
+        'slug',
+        'published_at',
     ];
 
     public static function getUniqueSlug($title) {

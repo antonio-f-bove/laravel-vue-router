@@ -18,7 +18,7 @@
   
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" id="title"
+      <input type="text" id="title" name="title"
       class="form-control @error('title') is-invalid @enderror"
       placeholder="input title"
       value="{{ old('title') }}"
@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <label for="content">Content</label>
-      <textarea id="content" 
+      <textarea id="content" name="content"
       class="form-control @error('content') is-invalid @enderror"
       placeholder="input content" rows="20"
       >
