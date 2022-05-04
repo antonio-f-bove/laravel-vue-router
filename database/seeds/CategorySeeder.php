@@ -24,6 +24,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $name) {
             $cat = new Category();
             $cat->name = $name;
+            $cat->slug = Str::slug($name);
             $cat->save();
         }
     }

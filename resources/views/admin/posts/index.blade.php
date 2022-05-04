@@ -16,8 +16,9 @@
         <th scope="col">id</th>
         <th scope="col">Title</th>
         <th scope="col">Slug</th>
+        <th scope="col">Category</th>
         <th scope="col">Published</th>
-        <th scope="col">Actions</th>
+        <th scope="col" class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@
           <th scope="row">{{ $post->id }}</th>
           <td>{{ $post->title }}</td>
           <td>{{ $post->slug }}</td>
+          <td class="text-center">{{ $post->category ? $post->category->name : '-' }}</td>
           <td>
             @if ($post->published_at)
               {{ $post->published_at }}               
