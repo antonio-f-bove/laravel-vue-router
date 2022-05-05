@@ -18,7 +18,7 @@
         </ul>
     </div>
     @endif
-  
+    {{-- title --}}
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" id="title" name="title"
@@ -31,6 +31,7 @@
       @enderror
     </div>
 
+    {{-- category --}}
     <div class="form-group">
       <label for="category_id">Category</label>
       <select name="category_id" id="category_id"
@@ -58,6 +59,24 @@
       @enderror
     </div>
 
+    {{-- tags --}}
+    <label for="">Tags</label>
+    <div class="checkbox-wrapper pl-3">
+      @foreach ($tags as $tag)
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" 
+        name="tags[]" id="checkbox-{{ $tag->id }}"
+        {{ $post->tags->contains($tag) ? 'checked' : '' }}
+        value="{{ $tag->id }}"
+        >
+        <label class="form-check-label" for="checkbox-{{ $tag->id }}">
+          {{ $tag->name }}
+        </label>
+      </div>
+      @endforeach
+    </div>
+
+    {{-- content --}}
     <div class="form-group">
       <label for="content">Content</label>
       <textarea id="content" name="content"

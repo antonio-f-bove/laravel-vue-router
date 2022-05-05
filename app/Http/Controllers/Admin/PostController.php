@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdatePost;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -17,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->latest()->get();
+        $posts = Post::with(['category', 'tags'])->latest()->get();
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -78,8 +79,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -92,7 +94,15 @@ class PostController extends Controller
     public function update(StoreUpdatePost $request, Post $post)
     {
         $validated = $request->validated();
+        // TODO aggiungi clausola, non c'e bisogno di farlo se titolo non cambiato
         $post->slug = Post::getUniqueSlug($validated['title']);
+
+        dd($validated);
+
+        array_key_exists('tags', $validated) 
+        ? $post->tags()->sync($validated['tags'])
+        : $post->tags()->detach();
+
         $post->update($validated);
  
         return redirect()->route('admin.posts.index');

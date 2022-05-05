@@ -27,7 +27,8 @@ class StoreUpdatePost extends FormRequest
         $rules = [
             'title' => 'required|string|max:150',
             'content' => 'required|string',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            // 'tags' => 'exists:tags,id',
         ];
 
         return $rules;

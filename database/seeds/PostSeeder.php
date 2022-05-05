@@ -32,7 +32,7 @@ class PostSeeder extends Seeder
     
             $new_post->save();
 
-            $new_post->tags()->attach($faker->randomElements($tagIds, rand(2,3)));
+            $new_post->tags()->attach($faker->randomElements($tagIds, rand(0,3)));
         }
     }
 }

@@ -17,6 +17,7 @@
         <th scope="col">Title</th>
         <th scope="col">Slug</th>
         <th scope="col">Category</th>
+        <th scope="col">Tags</th>
         <th scope="col">Published</th>
         <th scope="col" class="text-center">Actions</th>
       </tr>
@@ -27,7 +28,16 @@
           <th scope="row">{{ $post->id }}</th>
           <td>{{ $post->title }}</td>
           <td>{{ $post->slug }}</td>
-          <td class="text-center">{{ $post->category ? $post->category->name : '-' }}</td>
+          <td class="text-center">{{ optional($post->category)->name ?: '-' }}</td>
+          <td>
+            @if ($post->tags)
+              @foreach ($post->tags as $tag)
+              <span class="badge badge-pill badge-secondary">{{ $tag->name }}</span>
+              @endforeach
+            @else
+              <span>-</span>
+            @endif
+          </td>
           <td>
             @if ($post->published_at)
               {{ $post->published_at }}               
