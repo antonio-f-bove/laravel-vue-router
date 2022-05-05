@@ -49952,7 +49952,7 @@ function preventAndConfirm(formAction) {
       }
     });
   });
-} // add here the form actions to customize behavior of associated buttons
+} // add here the form actions to customize behavior of their associated submit buttons
 
 
 var formActions = ['publish', 'delete'];
