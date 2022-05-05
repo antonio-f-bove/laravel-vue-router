@@ -32,9 +32,11 @@
             @if ($post->published_at)
               {{ $post->published_at }}               
             @else
-              <form action="{{ route('admin.posts.publish', $post) }}" method="POST">
+              <form action="{{ route('admin.posts.publish', $post) }}" method="POST"
+              class="publish-form"
+              >
                 @csrf
-                <button class="btn btn-warning">Publish</button>
+                <button type="submit" class="btn btn-warning">Publish</button>
               </form>
             @endif
           </td>
@@ -44,7 +46,9 @@
                 @csrf
                 <button type="submit" class="btn btn-info mr-1">Edit</button>
               </form>
-              <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+              <form action="{{ route('admin.posts.destroy', $post) }}" method="POST"
+              class="delete-form"
+              >
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>

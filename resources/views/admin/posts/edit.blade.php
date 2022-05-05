@@ -3,7 +3,9 @@
 @section('content')
 
 <div class="container">
-  <form action="{{ route('admin.posts.update', $post) }}" method="POST">
+  <form action="{{ route('admin.posts.update', $post) }}" method="POST"
+  class="input-form"
+  >
     @csrf
     @method('PUT')
 

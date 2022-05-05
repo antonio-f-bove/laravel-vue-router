@@ -49796,6 +49796,12 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+/**
+ * Custom behavior for all input forms
+ * + client side confirmation on submit
+ */
+
+__webpack_require__(/*! ./form-behavior */ "./resources/js/form-behavior.js");
 
 /***/ }),
 
@@ -49910,6 +49916,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/form-behavior.js":
+/*!***************************************!*\
+  !*** ./resources/js/form-behavior.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * function wrapper for querySelectorAll -> buttons
+ * @param {string} formAction - what kind of action the button submits (eg. delete, store, ecc)
+ * @return {NodeList} - the button elements
+ */
+function qsaBtns(formAction) {
+  return document.querySelectorAll(".".concat(formAction, "-form [type=submit]"));
+}
+/**
+ * queries the clicked buttons and prevents default behavior, then asks confiration to user
+ * @param {string} formAction - what kind of action the button submits (eg. delete, store, ecc)
+ */
+
+
+function preventAndConfirm(formAction) {
+  var buttons = qsaBtns(formAction);
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (confirm("Do you really want to ".concat(formAction, " this post?"))) {
+        var form = e.target.closest(".".concat(formAction, "-form"));
+        form.submit();
+      }
+    });
+  });
+} // add here the form actions to customize behavior of associated buttons
+
+
+var formActions = ['publish', 'delete'];
+formActions.forEach(function (action) {
+  preventAndConfirm(action);
+});
 
 /***/ }),
 

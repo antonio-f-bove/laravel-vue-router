@@ -30,3 +30,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+/**
+ * Custom behavior for all input forms
+ * + client side confirmation on submit
+ */
+require('./form-behavior');
