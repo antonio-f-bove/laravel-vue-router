@@ -32,6 +32,7 @@
         </ul>
     </div>
     @endif
+
     {{-- title --}}
     <div class="form-group">
       <label for="title">Title</label>
@@ -74,13 +75,14 @@
     </div>
 
     {{-- tags --}}
-    <label for="">Tags</label>
+    <label>Tags</label>
     <div class="form-group px-3">
       @foreach ($tags as $tag)
       <div class="form-check form-check-inline">
         <input class="form-check-input @error('tags.{{ $loop->index }}') is-invalid @enderror" 
         name="tags[{{ $loop->index }}]" id="checkbox-{{ $tag->id }}"
         value="{{ $tag->id }}" type="checkbox" 
+        {{-- <!-- TODO implementare assistenza preselezionati con old() ?? --}}
         {{ $post->tags->contains($tag) ? 'checked' : '' }}
         >
         <label class="form-check-label" for="checkbox-{{ $tag->id }}">

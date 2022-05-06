@@ -2,6 +2,12 @@
 
 @section('content')
 
+<div class="container mb-3">
+  <h1>
+    Create new post
+  </h1>
+</div>
+
 <div class="container">
   @if ($errors->any())
   <div class="alert alert-danger">
@@ -18,6 +24,7 @@
   >
     @csrf
   
+    {{-- title --}}
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" id="title" name="title"
@@ -30,6 +37,7 @@
       @enderror
     </div>
 
+    {{-- category --}}
     <div class="form-group">
       <label for="category_id">Category</label>
       <select name="category_id" id="category_id"
@@ -49,6 +57,23 @@
       @enderror
     </div>
 
+    {{-- tags --}}
+    <label>Tags</label>
+    <div class="form-group px-3">
+      @foreach ($tags as $tag)
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="tags[{{ $loop->index }}]" id="checkbox-{{ $tag->id }}"
+          value="{{ $tag->id }}"
+          class="form-check-input @error('tags.{{ $loop->index }}') is-invalid @enderror"
+          >
+          <label for="checkbox-{{ $tag->id }}" class="form-check-label">
+            {{ $tag->name }}
+          </label>
+        </div>
+      @endforeach
+    </div>
+
+    {{-- content --}}
     <div class="form-group">
       <label for="content">Content</label>
       <textarea id="content" name="content"

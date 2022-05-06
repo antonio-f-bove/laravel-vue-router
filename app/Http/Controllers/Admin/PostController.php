@@ -44,18 +44,14 @@ class PostController extends Controller
      */
     public function store(StoreUpdatePost $request)
     {
-    //     $validated = $request->validate([
-    //         'title' => 'required|max:150',
-    //         'content' => 'required',
-    //     ]);
-
         $validated = $request->validated();
-        // dd($validated);
 
         $post = new Post();
         $post->fill($validated);
         $post->slug = Post::getUniqueSlug($post->title);
         $post->save();
+
+        $post->tags()->attach($validated['tags']);
         
         return redirect()->route('admin.posts.index');
     }
