@@ -2,9 +2,23 @@
 
 @section('content')
 
+<div class="container d-flex justify-content-between">
+  <h1>
+    Edit post id: {{ $post->id }}
+  </h1>
+  <form action="{{ route('admin.posts.destroy', $post) }}" method=POST
+  class="delete-form"
+  >
+    @csrf
+    @method('DELETE')
+
+    <button type="submit" class="btn btn-danger">Delete Post</button>
+  </form>
+</div>
+
 <div class="container">
-  <form action="{{ route('admin.posts.update', $post) }}" method="POST"
-  class="input-form"
+  <form action="{{ route('admin.posts.update', $post) }}" 
+  method="POST" class="input-form"
   >
     @csrf
     @method('PUT')
@@ -61,13 +75,13 @@
 
     {{-- tags --}}
     <label for="">Tags</label>
-    <div class="checkbox-wrapper pl-3">
+    <div class="form-group px-3">
       @foreach ($tags as $tag)
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" 
-        name="tags[]" id="checkbox-{{ $tag->id }}"
+        <input class="form-check-input @error('tags.{{ $loop->index }}') is-invalid @enderror" 
+        name="tags[{{ $loop->index }}]" id="checkbox-{{ $tag->id }}"
+        value="{{ $tag->id }}" type="checkbox" 
         {{ $post->tags->contains($tag) ? 'checked' : '' }}
-        value="{{ $tag->id }}"
         >
         <label class="form-check-label" for="checkbox-{{ $tag->id }}">
           {{ $tag->name }}

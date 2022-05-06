@@ -31,8 +31,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -94,11 +95,11 @@ class PostController extends Controller
     public function update(StoreUpdatePost $request, Post $post)
     {
         $validated = $request->validated();
-        // TODO aggiungi clausola, non c'e bisogno di farlo se titolo non cambiato
-        $post->slug = Post::getUniqueSlug($validated['title']);
 
-        dd($validated);
-
+        if ($validated['title'] != $post->title) {
+            $post->slug = Post::getUniqueSlug($validated['title']);
+        }
+        
         array_key_exists('tags', $validated) 
         ? $post->tags()->sync($validated['tags'])
         : $post->tags()->detach();
