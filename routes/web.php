@@ -25,6 +25,10 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function() {
         Route::get('/home', 'HomeController')->name('home');
-        Route::post('posts/{post}', 'PostController@publish')->name('posts.publish');
+        Route::post('/posts/{post}', 'PostController@publish')->name('posts.publish');
         Route::resource('/posts', 'PostController')->except('show');
+    });
+
+    Route::fallback(function() {
+        return view('guest.home');
     });
