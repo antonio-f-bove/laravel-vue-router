@@ -1947,6 +1947,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1954,7 +1958,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: {}
+      posts: null,
+      pages: {
+        current: 0,
+        last: 0
+      }
     };
   },
   methods: {
@@ -1963,11 +1971,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('http://127.0.0.1:8000/api/posts').then(function (response) {
         if (!response.data.success) throw new Error('Couldn\'t get any posts.');
-        var _response$data = response.data,
-            posts = _response$data.posts,
-            current_page = _response$data.current_page,
-            last_page = _response$data.last_page;
-        _this.posts = posts.data; // TODO come faccio ad avere solo il posts senza data
+        var _response$data$posts = response.data.posts,
+            data = _response$data$posts.data,
+            current_page = _response$data$posts.current_page,
+            last_page = _response$data$posts.last_page;
+        _this.posts = data; // TODO come faccio ad avere solo il posts senza data
+
+        _this.pages.last = last_page;
+        _this.pages.current = current_page;
       });
     }
   },
@@ -20395,6 +20406,15 @@ var render = function () {
           staticClass: "col-3",
           attrs: { post: post },
         })
+      }),
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "d-flex justify-content-center" },
+      _vm._l(_vm.pages.last, function (n) {
+        return _c("navigation-dots", { key: n })
       }),
       1
     ),
