@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container overflow-y-auto">
 
     <!-- posts grid -->
-    <div v-if="postsLoaded" class="grid grid-cols-4 gap-4">
+    <div v-if="postsLoaded" class="grid grid-cols-4 gap-6 py-6">
       <post-card v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <div v-else>
@@ -16,7 +16,7 @@
       @click.native="fetchPosts(n)"
       />
     </div>
-    
+
   </div>
 </template>
 

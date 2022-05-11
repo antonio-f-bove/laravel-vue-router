@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="bg-slate-600">
     <!-- TODO fix header and footer -> SPA -->
-    <app-header class="bg-stone-500 fixed h-16 top-0 inset-x-0"/>
+    <app-header class="fixed h-16 top-0 inset-x-0"/>
 
-    <router-view class="py-16"></router-view>
+    <router-view class="h-[calc(100vh-8rem)] mt-16"></router-view>
 
-    <app-header class="bg-stone-500 fixed h-16 bottom-0 inset-x-0" />
+    <app-header class="fixed h-16 bottom-0 inset-x-0" />
   </div>
 </template>
 
@@ -21,6 +21,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$bar-h: 4rem;
 
+.container {
+
+}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <span :class="[pages.current === n ? 'bg-blue-400 text-white' : '', 
+  <span :class="[pages.current === n ? 'bg-amber-400 text-white' : '', 
   'w-10 h-10 flex items-center justify-center cursor-pointer rounded-full text-center border border-black']"
   >
     {{ n }}
