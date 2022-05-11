@@ -57,7 +57,7 @@ class PostController extends Controller
         $post->load('category', 'tags');
 
         return response()->json([
-            'data' => $post,
+            'post' => $post,
             'success' => true
         ]);
     }

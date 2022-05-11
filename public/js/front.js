@@ -2055,6 +2055,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2063,16 +2091,20 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    fetchPost: function fetchPost(slug) {
+    fetchPost: function fetchPost() {
       var _this = this;
 
-      axios.get("api/posts/".concat($route.params.slug)).then(function (res) {
-        _this.post = res.data;
+      axios.get("/api/posts/".concat(this.$route.params.slug)).then(function (res) {
+        var post = res.data.post;
+        _this.post = post;
         _this.postLoaded = true;
       })["catch"](function (err) {
-        console.warn('Error', err.message);
+        console.warn('Error:', err.message);
       });
     }
+  },
+  beforeMount: function beforeMount() {
+    this.fetchPost();
   }
 });
 
@@ -3565,15 +3597,70 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.postLoaded
-      ? _c("div", { staticClass: "text-center" }, [
-          _vm._v("\n    " + _vm._s(_vm.post.title) + "\n  "),
-        ])
+      ? _c("div", {}, [_vm._m(0)])
       : _c("div", { staticClass: "text-center" }, [
           _vm._v("\n    LOADING...\n  "),
         ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container py-6" }, [
+      _c("div", { staticClass: "flex justify-evenly items-center mb-8" }, [
+        _c("div", { staticClass: "relative" }, [
+          _c("h1", { staticClass: "text-6xl" }, [
+            _c("span", { staticClass: "text-amber-400" }, [_vm._v("Title:")]),
+            _vm._v(" " + _vm._s(_vm.post.title) + "\n        "),
+          ]),
+          _vm._v(" "),
+          _vm.post.category
+            ? _c("h3", { staticClass: "text-xl ml-48" }, [
+                _c("span", { staticClass: "text-amber-400" }, [
+                  _vm._v("Category:"),
+                ]),
+                _vm._v(" " + _vm._s(_vm.post.category.name) + "\n        "),
+              ])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "flex gap-4 flex-nowrap" },
+          _vm._l(_vm.post.tags, function (tag) {
+            return _c(
+              "li",
+              {
+                key: tag.id,
+                staticClass:
+                  "bg-amber-600 inline-block rounded-full px-2 whitespace-nowrap",
+              },
+              [_vm._v("\n          " + _vm._s(tag.name) + "\n        ")]
+            )
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex" }, [
+        _c("div", { staticClass: "columns-3 w-full" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "indent-8 flex-grow" }, [
+          _vm._v("\n        " + _vm._s(_vm.post.content) + "\n      "),
+        ]),
+      ]),
+    ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("img", {
+        staticClass: "w-full object-cover",
+        attrs: { src: "https://picsum.photos/1200/300", alt: "post-image" },
+      }),
+    ])
+  },
+]
 render._withStripped = true
 
 
