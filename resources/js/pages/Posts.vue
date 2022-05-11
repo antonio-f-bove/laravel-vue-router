@@ -16,6 +16,7 @@
       @click.native="fetchPosts(n)"
       />
     </div>
+    
   </div>
 </template>
 

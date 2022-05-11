@@ -1,6 +1,6 @@
 <template>
-  <div>
-    {{ post.title }}
+  <div class="card">
+    .card
   </div>
 </template>
 

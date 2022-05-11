@@ -1,6 +1,6 @@
 <template>
-  <header class="container py-4">
-    <ul class="flex gap-3">
+  <header class="">
+    <ul class="flex gap-3 items-center">
       <li>
         <router-link :to="{ name: 'posts.index' }">
           Posts
@@ -21,6 +21,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+// @import '../../sass/variables';
 
+// .container {
+//   height: 9rem;
+//   position: fixed;
+
+// }
 </style>

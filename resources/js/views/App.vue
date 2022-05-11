@@ -1,13 +1,11 @@
 <template>
   <div>
     <!-- TODO fix header and footer -> SPA -->
-    <app-header />
+    <app-header class="bg-stone-500 fixed h-16 top-0 inset-x-0"/>
 
-    <router-view></router-view>
+    <router-view class="py-16"></router-view>
 
-    <footer>
-      FOOTER
-    </footer>
+    <app-header class="bg-stone-500 fixed h-16 bottom-0 inset-x-0" />
   </div>
 </template>
 
