@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- TODO fix header and footer -> SPA -->
     <app-header />
 
     <router-view></router-view>
