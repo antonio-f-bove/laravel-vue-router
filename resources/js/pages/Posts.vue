@@ -1,8 +1,8 @@
 <template>
-  <div class="container overflow-y-auto">
+  <div class="container py-6 overflow-y-auto">
 
     <!-- posts grid -->
-    <div v-if="postsLoaded" class="grid grid-cols-4 gap-6 py-6">
+    <div v-if="postsLoaded" class="grid grid-cols-3 lg:grid-cols-4 gap-6 mb-4">
       <post-card v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <div v-else>

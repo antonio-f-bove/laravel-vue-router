@@ -14,11 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::namespace('Api')->group(function() {
 
-    Route::resource('/posts', 'PostController');
+    Route::resource('/posts', 'PostController')
+        ->only('index', 'show')
+        ->parameters(['post' => 'slug']);
+
+    Route::resource('categories', 'CategoryController')
+        ->only('index', 'show')
+        // ->parameters('')
+        ;
 });

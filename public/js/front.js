@@ -1978,6 +1978,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     post: Object
@@ -2039,7 +2050,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      post: null,
+      postLoaded: false
+    };
+  },
+  methods: {
+    fetchPost: function fetchPost(slug) {
+      var _this = this;
+
+      axios.get("api/posts/".concat($route.params.slug)).then(function (res) {
+        _this.post = res.data;
+        _this.postLoaded = true;
+      })["catch"](function (err) {
+        console.warn('Error', err.message);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2133,7 +2168,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AppHeader_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/AppHeader.vue */ "./resources/js/components/AppHeader.vue");
-//
 //
 //
 //
@@ -3411,36 +3445,55 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "router-link",
     {
       staticClass:
-        "card text-white border border-amber-400 rounded-lg overflow-hidden",
+        "card text-white border border-amber-400 rounded-lg overflow-hidden cursor-pointer",
+      attrs: {
+        tag: "div",
+        to: { name: "posts.show", params: { slug: _vm.post.slug } },
+      },
     },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "card__img" }, [
+        _c("img", {
+          staticClass: "object-cover",
+          attrs: { src: "https://picsum.photos/1200/300", alt: "post-image" },
+        }),
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card__body px-4 py-2" }, [
-        _c("div", { staticClass: "text-center" }, [
+      _c("div", { staticClass: "card__body px-4 py-2 text-center" }, [
+        _c("div", { staticClass: " mb-2" }, [
           _vm._v("\n      " + _vm._s(_vm.post.title) + "\n    "),
         ]),
-        _vm._v("\n    .text-\n  "),
+        _vm._v(" "),
+        _vm.post.category
+          ? _c("div", { staticClass: "text-amber-400 mb-2 " }, [
+              _vm._v("\n      " + _vm._s(_vm.post.category.name) + "\n    "),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "flex gap-2 justify-center mb-2" },
+          _vm._l(_vm.post.tags, function (tag) {
+            return _c(
+              "li",
+              {
+                key: tag.id,
+                staticClass:
+                  "rounded-full bg-amber-600 px-2 text-xs whitespace-nowrap",
+              },
+              [_vm._v("\n        " + _vm._s(tag.name) + "\n      ")]
+            )
+          }),
+          0
+        ),
       ]),
     ]
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card__img w-full" }, [
-      _c("img", {
-        staticClass: "object-cover",
-        attrs: { src: "https://picsum.photos/1200/300", alt: "post-image" },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -3510,7 +3563,15 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  POST SHOW\n")])
+  return _c("div", [
+    _vm.postLoaded
+      ? _c("div", { staticClass: "text-center" }, [
+          _vm._v("\n    " + _vm._s(_vm.post.title) + "\n  "),
+        ])
+      : _c("div", { staticClass: "text-center" }, [
+          _vm._v("\n    LOADING...\n  "),
+        ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3534,11 +3595,11 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container overflow-y-auto" }, [
+  return _c("div", { staticClass: "container py-6 overflow-y-auto" }, [
     _vm.postsLoaded
       ? _c(
           "div",
-          { staticClass: "grid grid-cols-4 gap-6 py-6" },
+          { staticClass: "grid grid-cols-3 lg:grid-cols-4 gap-6 mb-4" },
           _vm._l(_vm.posts, function (post) {
             return _c("post-card", { key: post.id, attrs: { post: post } })
           }),
@@ -3592,7 +3653,7 @@ var render = function () {
     [
       _c("app-header", { staticClass: "fixed h-16 top-0 inset-x-0" }),
       _vm._v(" "),
-      _c("router-view", { staticClass: "h-[calc(100vh-8rem)] mt-16" }),
+      _c("router-view", { staticClass: "h-[calc(100vh-8rem)] my-16" }),
       _vm._v(" "),
       _c("app-header", { staticClass: "fixed h-16 bottom-0 inset-x-0" }),
     ],

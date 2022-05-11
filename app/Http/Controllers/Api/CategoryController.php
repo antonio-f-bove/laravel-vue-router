@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Post;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category', 'tags')
-            ->where('published_at', '!=', null)
-            ->paginate(12);
-
-            return response()->json([
-                'posts' => $posts,
-                'success' => true,
-            ]);
+        //
     }
 
     /**
@@ -52,14 +44,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        $post->load('category', 'tags');
-
-        return response()->json([
-            'data' => $post,
-            'success' => true
-        ]);
+        //
     }
 
     /**

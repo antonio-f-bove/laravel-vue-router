@@ -1,9 +1,8 @@
 <template>
   <div class="bg-slate-600">
-    <!-- TODO fix header and footer -> SPA -->
     <app-header class="fixed h-16 top-0 inset-x-0"/>
 
-    <router-view class="h-[calc(100vh-8rem)] mt-16"></router-view>
+    <router-view class="h-[calc(100vh-8rem)] my-16"></router-view>
 
     <app-header class="fixed h-16 bottom-0 inset-x-0" />
   </div>

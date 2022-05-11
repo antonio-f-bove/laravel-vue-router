@@ -20,6 +20,16 @@ class Post extends Model
         'published_at',
     ];
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public static function getUniqueSlug($title) {
         $base_slug = Str::slug($title);
         $slug = $base_slug;
