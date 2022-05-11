@@ -1,11 +1,6 @@
 <template>
-  <div class="card">
-    <div class="card-header"></div>
-    <div class="card-body">
-      <div class="card-title">
-        {{ post.title }}
-      </div>
-    </div>
+  <div>
+    {{ post.title }}
   </div>
 </template>
 
