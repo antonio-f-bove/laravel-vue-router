@@ -4,12 +4,12 @@
  * code may be modified to fit the specific needs of your application.
  */
 
- try {
-  window.Popper = require('popper.js').default;
-  window.$ = window.jQuery = require('jquery');
+//  try {
+//   window.Popper = require('popper.js').default;
+//   window.$ = window.jQuery = require('jquery');
 
-  require('bootstrap');
-} catch (e) {}
+//   require('bootstrap');
+// } catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -29,9 +29,12 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import router from './router'
+
 import App from './views/App.vue';
 
  const app = new Vue({
   el: '#root',
-  render: h => h(App)
+  render: h => h(App),
+  router
 });

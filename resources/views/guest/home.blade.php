@@ -12,12 +12,27 @@
     <!-- Scripts -->
     <script src="{{ asset('js/front.js') }}" defer></script>
 
+    {{-- Tailwind --}}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: '#da373d',
+            }
+          }
+        }
+      }
+    </script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+
 </head>
 <body>
 

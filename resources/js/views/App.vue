@@ -1,23 +1,23 @@
 <template>
-  <div class="container">
-    <h1>Posts</h1>
+  <div>
+    <app-header />
 
-    <div class="row">
-      <post-card class="col-3" v-for="post in posts" :key="post.id" :post="post" />
-    </div>
+    <router-view></router-view>
 
-    <div class="d-flex justify-content-center">
-      <navigation-dots v-for="n in pages.last" :key="n" />
-    </div>
+    <footer>
+      FOOTER
+    </footer>
   </div>
 </template>
 
 <script>
-import PostCard from '../components/PostCard.vue';
+import Posts from '../pages/Posts.vue'
+import AppHeader from '../components/AppHeader.vue'
 
 export default {
   components: {
-    PostCard,
+    Posts,
+    AppHeader,
   },
   data() {
     return {
@@ -36,7 +36,7 @@ export default {
           if (!response.data.success) throw new Error('Couldn\'t get any posts.');
 
           const { data, current_page, last_page } = response.data.posts;
-          this.posts = data; // TODO come faccio ad avere solo il posts senza data
+          this.posts = data;
           this.pages.last = last_page;
           this.pages.current = current_page;
       });
