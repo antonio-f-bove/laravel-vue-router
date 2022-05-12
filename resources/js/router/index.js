@@ -29,6 +29,7 @@ const routes = [
     name: 'posts.show',
     component: Post
   },
+  // TODO fallback route -> 404
 ]
 
 const router = new VueRouter({

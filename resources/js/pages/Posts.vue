@@ -1,22 +1,23 @@
 <template>
-  <div class="container py-6 overflow-y-auto">
+  <div>
+    <div class="container py-6">
+      <!-- posts grid -->
+      <div v-if="postsLoaded" class="grid grid-cols-3 lg:grid-cols-4 gap-6 mb-4">
+        <post-card v-for="post in posts" :key="post.id" :post="post" />
+      </div>
+      <div v-else>
+        <!-- TODO add loader -->
+        LOADING
+      </div>
 
-    <!-- posts grid -->
-    <div v-if="postsLoaded" class="grid grid-cols-3 lg:grid-cols-4 gap-6 mb-4">
-      <post-card v-for="post in posts" :key="post.id" :post="post" />
+      <!-- pagination dots -->
+      <!-- TODO make it a component, needs more logic -->
+      <div class="flex justify-center gap-4">
+        <navigation-dots v-for="n in pages.last" :key="n" :n="n" :pages="pages"
+        @click.native="fetchPosts(n)"
+        />
+      </div>
     </div>
-    <div v-else>
-      <!-- TODO add loader -->
-      LOADING
-    </div>
-
-    <!-- pagination dots -->
-    <div class="flex justify-center gap-4">
-      <navigation-dots v-for="n in pages.last" :key="n" :n="n" :pages="pages"
-      @click.native="fetchPosts(n)"
-      />
-    </div>
-
   </div>
 </template>
 

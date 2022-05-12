@@ -17,6 +17,7 @@ class PostController extends Controller
     {
         $posts = Post::with('category', 'tags')
             ->where('published_at', '!=', null)
+            ->latest()
             ->paginate(12);
 
             return response()->json([

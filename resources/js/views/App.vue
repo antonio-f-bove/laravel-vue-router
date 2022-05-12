@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-slate-600">
+  <div class="">
     <app-header class="fixed h-16 top-0 inset-x-0"/>
 
-    <router-view class="h-[calc(100vh-8rem)] my-16"></router-view>
+    <router-view class="bg-slate-600 h-[calc(100vh-4rem)] absolute top-16 inset-x-0 overflow-y-auto z-50"></router-view>
 
-    <app-header class="fixed h-16 bottom-0 inset-x-0" />
+    <!-- <app-header class="fixed h-16 bottom-0 inset-x-0" /> -->
   </div>
 </template>
 
@@ -20,10 +20,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$bar-h: 4rem;
-
-.container {
-
-}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <div v-if="postLoaded" class="">
       <div class="">
       <img class="w-full object-cover" src="https://picsum.photos/1200/300" alt="post-image">
@@ -7,6 +7,7 @@
     </div>
     <div v-else class="text-center">
       LOADING...
+      <!-- TODO add loader -->
     </div>
 
     <div class="container py-6">
@@ -28,8 +29,10 @@
         </ul>
       </div>
       <div class="flex">
-        <div class="columns-3 w-full"></div>
-        <p class="indent-8 flex-grow">
+        <div class="">
+          <!-- TODO sidebar? -->
+        </div>
+        <p class="indent-8 columns-3">
           {{ post.content }}
         </p>
       </div>
