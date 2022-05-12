@@ -56,6 +56,10 @@ export default {
       })
       .catch(err => {
         console.warn('Error', err.message);
+        
+        console.error(err.response)
+
+        this.$router.push({ name: '404', params: { res: err.response } })
       });
     },
   },

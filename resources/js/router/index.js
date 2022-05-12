@@ -7,6 +7,7 @@ import HomePage from '../pages/HomePage.vue'
 import ContactPage from '../pages/ContactPage.vue'
 import Posts from '../pages/Posts.vue'
 import Post from '../pages/Post.vue'
+import CatchAll404 from '../pages/CatchAll404.vue'
 
 const routes = [
   {
@@ -28,6 +29,11 @@ const routes = [
     path: '/posts/:slug',
     name: 'posts.show',
     component: Post
+  },
+  {
+    path: '/*',
+    name: '404',
+    component: CatchAll404
   },
   // TODO fallback route -> 404
 ]

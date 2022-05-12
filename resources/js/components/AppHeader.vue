@@ -26,6 +26,7 @@
 
       <!-- right side of sidebar -->
       <ul class="flex gap-3 items-center">
+        <!-- TODO path to /admin/home ??? -->
         <router-link :to="{ path: '/admin/home' }" tag="li"
           class="text-2xl text-slate-800 px-2 rounded-md bg-amber-400/70
           hover:bg-amber-400 hover:shadow hover:shadow-slate-200 
