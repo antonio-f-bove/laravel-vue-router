@@ -1,5 +1,5 @@
 <template>
-  <span :class="[pages.current === n ? 'bg-amber-400 text-white' : '', 
+  <span :class="[current === n ? 'bg-amber-400 text-white border-white' : '', 
   'w-10 h-10 flex items-center justify-center cursor-pointer rounded-full text-center border border-black']"
   >
     {{ n }}
@@ -10,7 +10,10 @@
 export default {
   props:{
     n: Number,
-    pages: Object,
+    current: {
+      type: Number,
+      required: false,
+    },
   }
 }
 </script>

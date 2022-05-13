@@ -16,10 +16,12 @@
           <h1 class="text-6xl">
             <span class="text-amber-400">Title:</span> {{ post.title }}
           </h1>
+
           <h3 v-if="post.category" class="text-xl ml-48">
             <span class="text-amber-400">Category:</span> {{ post.category.name }}
           </h3>
         </div>
+        
         <ul class="flex gap-4 flex-nowrap">
           <li v-for="tag in post.tags" :key="tag.id"
           class="bg-amber-600 inline-block rounded-full px-2 whitespace-nowrap"
@@ -28,8 +30,8 @@
           </li>
         </ul>
       </div>
-      <div class="flex">
-        <div class="">
+      <div class="grid">
+        <div class="col-span-3">
           <!-- TODO sidebar? -->
         </div>
         <p class="indent-8 columns-3">
@@ -59,6 +61,7 @@ export default {
         })
         .catch(err => {
           console.warn('Error:', err.message)
+          this.$router.push({ name: '404', params: { res: err.response } })
         })
     }
   },

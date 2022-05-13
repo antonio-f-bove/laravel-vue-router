@@ -21,12 +21,12 @@ class PostSeeder extends Seeder
         $tags = Tag::all();
         $tagIds = $tags->pluck('id')->all();
 
-        for ($i=0; $i < 60; $i++) { 
+        for ($i=0; $i < 600; $i++) { 
             $new_post = new Post();
     
             $new_post->title = $faker->words(rand(5, 10), true);
             $new_post->slug = Str::slug($new_post->title);
-            $new_post->content = $faker->paragraphs(rand(5, 10), true);
+            $new_post->content = $faker->paragraphs(rand(10, 25), true);
             $new_post->published_at = $faker->optional()->dateTimeThisCentury();
             $new_post->category_id = $faker->optional()->randomElement($categoryIds);
     

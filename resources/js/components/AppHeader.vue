@@ -11,14 +11,14 @@
           <router-link :to="{ name: 'posts.index' }" tag="li"
           class="text-2xl text-slate-800 px-2 rounded-md bg-amber-400/70
           hover:bg-amber-400 hover:shadow hover:shadow-slate-200 
-          transition duration-300 ease-in-out"
+          transition duration-300 ease-in-out cursor-pointer"
           >
             Posts
           </router-link>
           <router-link :to="{ name: 'contact' }" tag="li"
           class="text-2xl text-slate-800 px-2 rounded-md bg-amber-400/70
           hover:bg-amber-400 hover:shadow hover:shadow-slate-200 
-          transition duration-300 ease-in-out"
+          transition duration-300 ease-in-out cursor-pointer"
           >
             Contact
           </router-link>
@@ -26,7 +26,7 @@
 
       <!-- right side of sidebar -->
       <ul class="flex gap-3 items-center">
-        <!-- TODO path to /admin/home ??? -->
+        <!-- TODO implement user ferature ? -->
         <router-link :to="{ path: '/admin/home' }" tag="li"
           class="text-2xl text-slate-800 px-2 rounded-md bg-amber-400/70
           hover:bg-amber-400 hover:shadow hover:shadow-slate-200 
@@ -34,13 +34,6 @@
           >
             Login
           </router-link>
-          <!-- <router-link :to="{ name: 'posts.index' }" tag="li"
-          class="text-2xl text-slate-800 px-2 rounded-md bg-amber-400/70
-          hover:bg-amber-400 hover:shadow hover:shadow-slate-200 
-          transition duration-300 ease-in-out"
-          >
-
-          </router-link> -->
       </ul>
 
     </nav>

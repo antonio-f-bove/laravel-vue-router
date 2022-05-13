@@ -12,23 +12,26 @@
 
       <!-- pagination dots -->
       <!-- TODO make it a component, needs more logic -->
-      <div class="flex justify-center gap-4">
+      <!-- <div class="flex justify-center gap-4">
         <navigation-dots v-for="n in pages.last" :key="n" :n="n" :pages="pages"
         @click.native="fetchPosts(n)"
         />
-      </div>
+      </div> -->
+      <pagination-unit :pages="pages" @page-change="fetchPosts(page)"/>
     </div>
   </div>
 </template>
 
 <script>
-import NavigationDots from '../components/NavigationDots.vue';
+import PaginationDots from '../components/PaginationDots.vue';
+import PaginationUnit from '../components/PaginationUnit.vue';
 import PostCard from '../components/PostCard.vue';
 
 export default {
   components: {
     PostCard,
-    NavigationDots,
+    PaginationDots,
+    PaginationUnit,
   },
   data() {
     return {
@@ -56,8 +59,6 @@ export default {
       })
       .catch(err => {
         console.warn('Error', err.message);
-        
-        console.error(err.response)
 
         this.$router.push({ name: '404', params: { res: err.response } })
       });
